@@ -38,12 +38,18 @@ def checkToday(item):  #
     soup = BeautifulSoup(f.content.decode(), "html.parser")
     #print(soup.prettify())
     #span class="a-size-medium a-color-price"
-    priceNow = float(soup.findAll(attrs={"class": "a-size-medium a-color-price"})[0].text.split('￥')[1] )
-    if priceNow < item.minPrice():
-        item.update(priceNow)
-        sub = item.name() + '现价:' + str(item.minPrice())
+    min = 9999
+    for price in soup.findAll(attrs={"class": "a-size-medium a-color-price"}):
+        priceNow = float(price.text.split('￥')[1].replace(',',''))
+        if min > priceNow:
+            min = priceNow
+
+    if min < item.minPrice():
+        item.update(min)
+        sub = item.name() + '现价: ' + str(item.minPrice())
         sendString = item.url() + '\n'
-        sendMail.sendMail(sub, sendString)
+        #sendMail.sendMail(sub, sendString)
+        print(sub)
     #
     #print(checkReaded)
     '''
