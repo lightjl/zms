@@ -80,8 +80,10 @@ def checkToday(item):  #
     '''
 
 print("zms正在运行")
-sdUrl = 'https://www.amazon.cn/gp/product/B0199IZ9VS/ref=ox_sc_act_title_1?ie=UTF8&psc=1&smid=A1AJ19PSB66TGU'
-sd64 = item('闪迪64G', 110, sdUrl)
+sd64Url = 'https://www.amazon.cn/gp/product/B0199IZ9VS/ref=ox_sc_act_title_1?ie=UTF8&psc=1&smid=A1AJ19PSB66TGU'
+sd64 = item('闪迪64Gtf', 110, sd64Url)
+sd128Url = 'https://www.amazon.cn/gp/product/B00KAPYN58/ref=ox_sc_act_title_1?ie=UTF8&psc=1&smid=A1AJ19PSB66TGU'
+sd128 = item('闪迪128Gtf', 210, sd128Url)
 timeB = [['8:00', '22:00']]
 timeWork = WorkInTime.WorkInTime(timeB, 60*60, 0)
 '''
@@ -91,3 +93,4 @@ zt = item('zt', 311, zturl)
 while True:
     timeWork.relax()
     checkToday(sd64)
+    checkToday(sd128)
